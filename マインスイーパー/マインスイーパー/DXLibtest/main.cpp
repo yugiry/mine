@@ -23,8 +23,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance,
 	//画像読み込み
 	gh_back = LoadGraph("image\\back.png");
 
-	int mouseX, mouseY;//カーソル位置保存用
-
 	Tile tile;
 
 	while (1) 
@@ -34,8 +32,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance,
 
 		//処理----------------------------------------------------------------
 
-		//マウスカーソルの位置を取得
-		GetMousePoint(&mouseX, &mouseY);
+		tile.Action();
 
 		//画像の描画(位置X、位置Y、グラフィックハンドル、透明度の有効無効)
 		//背景
