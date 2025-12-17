@@ -24,11 +24,23 @@ private:
 		RIGHT,
 		CLICKFLAG_END
 	};
+	enum CHECKTILE
+	{
+		UPLEFT = -(MAP_WIDTH + 1),
+		UPMIDDLE = -MAP_WIDTH,
+		UPRIGHT = -(MAP_WIDTH - 1),
+		MIDDLELEFT = -1,
+		MIDDLERIGHT = 1,
+		DOWNLEFT = MAP_WIDTH - 1,
+		DOWNMIDDLE = MAP_WIDTH,
+		DOWNRIGHT = MAP_WIDTH + 1
+	};
 	int turf_img{ -1 };
 	int tile_img[TILES_END]{ -1 };
 	int click_time{ -1 };
 	bool clickflag_left{ false };
 	bool clickflag[CLICKFLAG_END]{ false };
+	bool setmineflag{ false };
 	Point mouse;
 	Map map[TILE_WIDTH * TILE_HEIGHT];
 public:
@@ -38,5 +50,7 @@ public:
 	void CheckClick(int);
 	void SetMine(int);
 	int GetRandNum(int, int);
+	void CheckMine(int, int);
+	bool CheckClickBox(int, int);
 	void DrawTile();
 };

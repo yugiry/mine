@@ -14,8 +14,8 @@ constexpr auto TILE_WIDTH = 32;
 constexpr auto TILE_HEIGHT = 32;
 //”š’e‚Ì”
 constexpr auto BOMB_NUM = 30;
-//ˆø‚«Z—p‚Ì’è”
-constexpr auto SUB_NUM = -1;
+//ŒvZ—p‚Ì’è”
+constexpr auto SUB_RANDMAXNUM = -1;
 
 #pragma endregion
 
