@@ -1,8 +1,16 @@
-﻿  tile.cpp
-C:\Users\GA2A\Desktop\mine\マインスイーパー\マインスイーパー\DXLibtest\function.h(23,16): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'Point' の左辺を無視します。
+﻿  main.cpp
+  tile.cpp
+C:\Users\RiTe2\OneDrive\Desktop\mine\マインスイーパー\マインスイーパー\DXLibtest\function.h(23,16): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'Point' の左辺を無視します。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\Users\RiTe2\OneDrive\Desktop\mine\マインスイーパー\マインスイーパー\DXLibtest\function.h(28,16): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'Map' の左辺を無視します。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\Users\RiTe2\OneDrive\Desktop\mine\マインスイーパー\マインスイーパー\DXLibtest\function.h(23,16): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'Point' の左辺を無視します。
   (ソース ファイル 'tile.cpp' をコンパイルしています)
   
-C:\Users\GA2A\Desktop\mine\マインスイーパー\マインスイーパー\DXLibtest\function.h(28,16): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'Map' の左辺を無視します。
+C:\Users\RiTe2\OneDrive\Desktop\mine\マインスイーパー\マインスイーパー\DXLibtest\function.h(28,16): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'Map' の左辺を無視します。
   (ソース ファイル 'tile.cpp' をコンパイルしています)
   
-  DXLibtest.vcxproj -> C:\Users\GA2A\Desktop\mine\マインスイーパー\マインスイーパー\x64\Debug\DXLibtest.exe
+  コードを生成中...
+  DXLibtest.vcxproj -> C:\Users\RiTe2\OneDrive\Desktop\mine\マインスイーパー\マインスイーパー\x64\Debug\DXLibtest.exe

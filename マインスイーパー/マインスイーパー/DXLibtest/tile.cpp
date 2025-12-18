@@ -85,6 +85,7 @@ void Tile::CheckClick(int _LR)
 						SetMine(i);
 						setmineflag = true;
 					}
+					if (map[i].num != TILES::MINE)opentilenum++;
 					map[i].open = true;
 					OpenChainTiles(i);
 				}
@@ -208,6 +209,7 @@ void Tile::OpenTile(int _tn, int _rad)
 {
 	if (!map[_tn + _rad].open)
 	{
+		opentilenum++;
 		map[_tn + _rad].open = true;
 		OpenChainTiles(_tn + _rad);
 	}

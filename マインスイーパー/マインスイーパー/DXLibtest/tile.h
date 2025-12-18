@@ -37,7 +37,7 @@ private:
 	};
 	int turf_img{ -1 };
 	int tile_img[TILES_END]{ -1 };
-	int click_time{ -1 };
+	int opentilenum{ 0 };
 	bool clickflag_left{ false };
 	bool clickflag[CLICKFLAG_END]{ false };
 	bool setmineflag{ false };
