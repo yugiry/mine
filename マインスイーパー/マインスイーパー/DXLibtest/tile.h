@@ -41,16 +41,20 @@ private:
 	bool clickflag_left{ false };
 	bool clickflag[CLICKFLAG_END]{ false };
 	bool setmineflag{ false };
+	bool resetflag{ false };
 	Point mouse;
 	Map map[TILE_WIDTH * TILE_HEIGHT];
 public:
 	Tile();
 	~Tile();
 	void Action();
+	void ResetTile();
 	void CheckClick(int);
 	void SetMine(int);
 	int GetRandNum(int, int);
-	void CheckMine(int, int);
+	void AddTileNum(int, int);
+	void OpenChainTiles(int);
+	void OpenTile(int, int);
 	bool CheckClickBox(int, int);
 	void DrawTile();
 };
