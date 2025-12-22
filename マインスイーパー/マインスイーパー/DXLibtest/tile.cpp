@@ -32,19 +32,28 @@ void Tile::Action()
 	//マウスカーソルの位置を取得
 	GetMousePoint(&mouse.x, &mouse.y);
 
-	//タイル除去
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) && !clickflag[CLICKFLAG::LEFT])
+	//爆弾を開かずにすべてのタイルを開いた時
+	if (opentilenum == MAP_WIDTH * MAP_HEIGHT - MINE_NUM)
 	{
-		CheckClick(CLICKFLAG::LEFT);
-	}
-	clickflag[CLICKFLAG::LEFT] = (GetMouseInput() & MOUSE_INPUT_LEFT);
 
-	//フラグ設置
-	if ((GetMouseInput() & MOUSE_INPUT_RIGHT) && !clickflag[CLICKFLAG::RIGHT])
-	{
-		CheckClick(CLICKFLAG::RIGHT);
 	}
-	clickflag[CLICKFLAG::RIGHT] = (GetMouseInput() & MOUSE_INPUT_RIGHT);
+
+	if (!gameoverflag)
+	{
+		//タイル除去
+		if ((GetMouseInput() & MOUSE_INPUT_LEFT) && !clickflag[CLICKFLAG::LEFT])
+		{
+			CheckClick(CLICKFLAG::LEFT);
+		}
+		clickflag[CLICKFLAG::LEFT] = (GetMouseInput() & MOUSE_INPUT_LEFT);
+
+		//フラグ設置
+		if ((GetMouseInput() & MOUSE_INPUT_RIGHT) && !clickflag[CLICKFLAG::RIGHT])
+		{
+			CheckClick(CLICKFLAG::RIGHT);
+		}
+		clickflag[CLICKFLAG::RIGHT] = (GetMouseInput() & MOUSE_INPUT_RIGHT);
+	}
 
 	//リセット
 	if (CheckHitKey(KEY_INPUT_R))
@@ -66,6 +75,9 @@ void Tile::ResetTile()
 	}
 
 	setmineflag = false;
+	gameoverflag = false;
+	gameclearflag = false;
+	opentilenum = 0;
 }
 
 void Tile::CheckClick(int _LR)
@@ -109,7 +121,7 @@ void Tile::SetMine(int _tn)
 {
 	int point;
 	//爆弾を３０個生成する
-	for (int i = 0; i < BOMB_NUM; i++)
+	for (int i = 0; i < MINE_NUM; i++)
 	{
 		while (1) {
 			point = GetRandNum(0, MAP_WIDTH * MAP_HEIGHT);
@@ -135,6 +147,11 @@ void Tile::SetMine(int _tn)
 		AddTileNum(point, CHECKTILE::DOWNMIDDLE);
 		AddTileNum(point, CHECKTILE::UPMIDDLE);
 	}
+}
+
+void Tile::OpenMine()
+{
+	gameoverflag = true;
 }
 
 int Tile::GetRandNum(int min, int max)
@@ -203,11 +220,15 @@ void Tile::OpenChainTiles(int _tn)
 		}
 		OpenTile(_tn, CHECKTILE::DOWNMIDDLE);
 	}
+	else if (map[_tn].num == TILES::MINE)
+	{
+		OpenMine();
+	}
 }
 
 void Tile::OpenTile(int _tn, int _rad)
 {
-	if (!map[_tn + _rad].open)
+	if (!map[_tn + _rad].open && !map[_tn + _rad].flag && _tn + _rad < MAP_WIDTH * MAP_HEIGHT)
 	{
 		opentilenum++;
 		map[_tn + _rad].open = true;
@@ -225,7 +246,7 @@ void Tile::DrawTile()
 			DrawGraph(map[i].pos.x, map[i].pos.y, turf_img, true);
 			if (map[i].flag)
 			{
-				DrawGraph(map[i].pos.x, map[i].pos.y, tile_img[FRAG], true);
+				DrawGraph(map[i].pos.x, map[i].pos.y, tile_img[TILES::FRAG], true);
 			}
 		}
 		else
@@ -233,6 +254,18 @@ void Tile::DrawTile()
 			DrawGraph(map[i].pos.x, map[i].pos.y, tile_img[map[i].num], true);
 		}
 
+	}
+
+	if (gameclearflag)
+	{
+		SetFontSize(40);
+		DrawString(WINDOW_WIDTH / 2 - 105, WINDOW_HEIGHT / 2 - 20, "GAME_CLEAR", GetColor(0, 0, 0), true);
+	}
+
+	if (gameoverflag)
+	{
+		SetFontSize(40);
+		DrawString(WINDOW_WIDTH / 2 - 95, WINDOW_HEIGHT / 2 - 20, "GAME_OVER", GetColor(0, 0, 0), true);
 	}
 }
 

@@ -42,6 +42,8 @@ private:
 	bool clickflag[CLICKFLAG_END]{ false };
 	bool setmineflag{ false };
 	bool resetflag{ false };
+	bool gameoverflag{ false };
+	bool gameclearflag{ false };
 	Point mouse;
 	Map map[TILE_WIDTH * TILE_HEIGHT];
 public:
@@ -51,6 +53,7 @@ public:
 	void ResetTile();
 	void CheckClick(int);
 	void SetMine(int);
+	void OpenMine();
 	int GetRandNum(int, int);
 	void AddTileNum(int, int);
 	void OpenChainTiles(int);
