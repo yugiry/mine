@@ -35,10 +35,10 @@ void Tile::Action()
 	//爆弾を開かずにすべてのタイルを開いた時
 	if (opentilenum == MAP_WIDTH * MAP_HEIGHT - MINE_NUM)
 	{
-
+		gameclearflag = true;
 	}
 
-	if (!gameoverflag)
+	if (!gameoverflag && !gameclearflag)
 	{
 		//タイル除去
 		if ((GetMouseInput() & MOUSE_INPUT_LEFT) && !clickflag[CLICKFLAG::LEFT])
@@ -207,14 +207,14 @@ void Tile::OpenChainTiles(int _tn)
 		}
 		if (_tn % MAP_WIDTH != MAP_WIDTH - 1)
 		{
-			if (_tn + CHECKTILE::UPRIGHT)
+			if (_tn + CHECKTILE::UPRIGHT >= 0)
 			{
 				OpenTile(_tn, CHECKTILE::UPRIGHT);
 			}
 			OpenTile(_tn, CHECKTILE::MIDDLERIGHT);
 			OpenTile(_tn, CHECKTILE::DOWNRIGHT);
 		}
-		if (_tn + CHECKTILE::UPMIDDLE)
+		if (_tn + CHECKTILE::UPMIDDLE >= 0)
 		{
 			OpenTile(_tn, CHECKTILE::UPMIDDLE);
 		}
