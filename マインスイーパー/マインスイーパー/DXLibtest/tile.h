@@ -38,6 +38,7 @@ private:
 	int turf_img{ -1 };
 	int tile_img[TILES_END]{ -1 };
 	int opentilenum{ 0 };
+	int flag_num{ MINE_NUM };
 	bool clickflag_left{ false };
 	bool clickflag[CLICKFLAG_END]{ false };
 	bool setmineflag{ false };
@@ -60,4 +61,5 @@ public:
 	void OpenTile(int, int);
 	bool CheckClickBox(int, int);
 	void DrawTile();
+	void ShowFlagNum();
 };

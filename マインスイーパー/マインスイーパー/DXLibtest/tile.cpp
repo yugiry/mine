@@ -78,6 +78,7 @@ void Tile::ResetTile()
 	gameoverflag = false;
 	gameclearflag = false;
 	opentilenum = 0;
+	flag_num = MINE_NUM;
 }
 
 void Tile::CheckClick(int _LR)
@@ -106,10 +107,12 @@ void Tile::CheckClick(int _LR)
 					if (map[i].flag)
 					{
 						map[i].flag = false;
+						flag_num++;
 					}
 					else
 					{
 						map[i].flag = true;
+						flag_num--;
 					}
 				}
 			}
@@ -267,6 +270,14 @@ void Tile::DrawTile()
 		SetFontSize(40);
 		DrawString(WINDOW_WIDTH / 2 - 95, WINDOW_HEIGHT / 2 - 20, "GAME_OVER", GetColor(0, 0, 0), true);
 	}
+}
+
+void Tile::ShowFlagNum()
+{
+	DrawGraph(0, 15, tile_img[TILES::FRAG], true);
+	SetFontSize(32);
+	DrawFormatString(TILE_WIDTH, 15, GetColor(255, 255, 255), "%d", flag_num);
+	SetFontSize(16);
 }
 
 Tile::~Tile()

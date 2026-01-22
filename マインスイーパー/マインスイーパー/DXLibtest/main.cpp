@@ -39,6 +39,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance,
 		DrawGraph(0, 0, gh_back, true);
 
 		tile.DrawTile();
+		tile.ShowFlagNum();
 
 		//--------------------------------------------------------------------
 
