@@ -262,13 +262,17 @@ void Tile::DrawTile()
 	if (gameclearflag)
 	{
 		SetFontSize(40);
-		DrawString(WINDOW_WIDTH / 2 - 105, WINDOW_HEIGHT / 2 - 20, "GAME_CLEAR", GetColor(0, 0, 0), true);
+		DrawString(90, 5, "GAME_CLEAR", GetColor(255, 255, 255), true);
+		SetFontSize(15);
+		DrawString(WINDOW_WIDTH / 2 + 60, 25, "ゲームリセット:Rキー", GetColor(255, 255, 255), true);
 	}
 
 	if (gameoverflag)
 	{
 		SetFontSize(40);
-		DrawString(WINDOW_WIDTH / 2 - 95, WINDOW_HEIGHT / 2 - 20, "GAME_OVER", GetColor(0, 0, 0), true);
+		DrawString(100, 5, "GAME_OVER", GetColor(255,255,255), true);
+		SetFontSize(15);
+		DrawString(WINDOW_WIDTH / 2 + 60, 25, "ゲームリセット:Rキー", GetColor(255,255,255), true);
 	}
 }
 
