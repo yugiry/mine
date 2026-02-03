@@ -39,6 +39,9 @@ private:
 	int tile_img[TILES_END]{ -1 };
 	int opentilenum{ 0 };
 	int flag_num{ MINE_NUM };
+	int time{ 0 };
+	int second{ 0 };
+	bool time_start{ false };
 	bool clickflag_left{ false };
 	bool clickflag[CLICKFLAG_END]{ false };
 	bool setmineflag{ false };
@@ -62,4 +65,6 @@ public:
 	bool CheckClickBox(int, int);
 	void DrawTile();
 	void ShowFlagNum();
+	void ShowNowTime();
+	void Draw();
 };

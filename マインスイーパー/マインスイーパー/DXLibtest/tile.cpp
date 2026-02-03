@@ -29,6 +29,17 @@ Tile::Tile()
 
 void Tile::Action()
 {
+	if (time_start && !gameclearflag && !gameoverflag)
+	{
+		time++;
+	}
+
+	if (time == 120)
+	{
+		second++;
+		time = 0;
+	}
+
 	//マウスカーソルの位置を取得
 	GetMousePoint(&mouse.x, &mouse.y);
 
@@ -79,6 +90,7 @@ void Tile::ResetTile()
 	gameclearflag = false;
 	opentilenum = 0;
 	flag_num = MINE_NUM;
+	time = second = 0;
 }
 
 void Tile::CheckClick(int _LR)
@@ -97,6 +109,7 @@ void Tile::CheckClick(int _LR)
 					{
 						SetMine(i);
 						setmineflag = true;
+						time_start = true;
 					}
 					if (map[i].num != TILES::MINE)opentilenum++;
 					map[i].open = true;
@@ -261,27 +274,48 @@ void Tile::DrawTile()
 
 	if (gameclearflag)
 	{
-		SetFontSize(40);
-		DrawString(90, 5, "GAME_CLEAR", GetColor(255, 255, 255), true);
+		SetFontSize(32);
+		DrawString(160, 0, "GAME_CLEAR", GetColor(255, 0, 0), true);
 		SetFontSize(15);
-		DrawString(WINDOW_WIDTH / 2 + 60, 25, "ゲームリセット:Rキー", GetColor(255, 255, 255), true);
+		DrawString(WINDOW_WIDTH / 2 + 60, 30, "ゲームリセット:Rキー", GetColor(255, 255, 255), true);
+		SetFontSize(16);
 	}
 
 	if (gameoverflag)
 	{
-		SetFontSize(40);
-		DrawString(100, 5, "GAME_OVER", GetColor(255,255,255), true);
+		SetFontSize(32);
+		DrawString(160, 0, "GAME_OVER", GetColor(255,0,0), true);
 		SetFontSize(15);
-		DrawString(WINDOW_WIDTH / 2 + 60, 25, "ゲームリセット:Rキー", GetColor(255,255,255), true);
+		DrawString(WINDOW_WIDTH / 2 + 60, 30, "ゲームリセット:Rキー", GetColor(255,255,255), true);
+		SetFontSize(16);
 	}
 }
 
 void Tile::ShowFlagNum()
 {
 	DrawGraph(0, 15, tile_img[TILES::FRAG], true);
-	SetFontSize(32);
-	DrawFormatString(TILE_WIDTH, 15, GetColor(255, 255, 255), "%d", flag_num);
+	SetFontSize(28);
+	DrawFormatString(TILE_WIDTH, 20, GetColor(255, 255, 255), "%d", flag_num);
 	SetFontSize(16);
+}
+
+void Tile::ShowNowTime()
+{
+	SetFontSize(28);
+	if (second / 10 == 0)
+		DrawFormatString(75, 20, GetColor(255, 255, 255), "00%d秒", second);
+	else if(second / 100 == 0)
+		DrawFormatString(75, 20, GetColor(255, 255, 255), "0%d秒", second);
+	else
+		DrawFormatString(75, 20, GetColor(255, 255, 255), "%d秒", second);
+	SetFontSize(16);
+}
+
+void Tile::Draw()
+{
+	DrawTile();
+	ShowFlagNum();
+	ShowNowTime();
 }
 
 Tile::~Tile()

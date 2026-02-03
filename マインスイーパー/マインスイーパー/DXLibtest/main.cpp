@@ -1,7 +1,5 @@
 #include "DxLib.h"
 #include "function.h"
-#include "master.h"
-#include "player.h"
 #include "tile.h"
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance,
@@ -38,8 +36,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance,
 		//îwåi
 		DrawGraph(0, 0, gh_back, true);
 
-		tile.DrawTile();
-		tile.ShowFlagNum();
+		tile.Draw();
 
 		//--------------------------------------------------------------------
 
